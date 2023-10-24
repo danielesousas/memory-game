@@ -11,6 +11,7 @@ body {
     align-items: center;
     min-height: 100%;
     background: #fc1e8a;
+    user-select: none;
 }
 
 .container {
@@ -52,7 +53,7 @@ h2 {
 .game {
     width: 430px;
     height: 430px;
-    border: 1px solid red;
+   /*border: 1px solid red;  - essa borda estava causando quebra de linha nas divs*/
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -68,4 +69,29 @@ h2 {
     align-items: center;
     justify-content: center;
     background-color: #fff;
+
+    font-size: 3em;
+    transform: rotateY(180deg);
+    transition: 0.25s;
+}
+
+.item::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    /*opacity: 0.85;/* - teste para verificar se emojis estão nos cards*/
+    background: #404040;
+    transition: 0.25s;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+}
+
+.item.boxOpen {
+    transform: rotateY(0deg);
+}
+
+.boxOpen::after,
+.boxOpenMatch
+{
+    transform: rotateY(180deg);
 }
